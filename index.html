@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBER KAKEIBO</title>
+    <!-- 🎨 読み込むCSSファイル -->
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+    <!-- 🌌 アプリのコンテナ（全体を囲む枠） -->
+    <div class="app-container">
+        
+        <!-- 🚀 メインヘッダー（すべての画面で共通で上に表示） -->
+        <header class="cyber-header">
+            <h1>CYBER WALLET</h1>
+            <div class="total-box">
+                <span class="total-label">MONTHLY EXPENSE</span>
+                <div class="total-amount">¥ <span id="total-price">0</span></div>
+            </div>
+        </header>
+
+        <!-- ＝★＝★＝ 5つの画面の定義 ＝★＝★＝ -->
+
+        <!-- 🏠 1. ホーム画面 -->
+        <div id="home-screen" class="app-screen active">
+            <section class="input-section">
+                <h2>NEW TRANSACTION</h2>
+                <form id="kakeibo-form">
+                    <div class="form-group">
+                        <label for="amount">AMOUNT (円)</label>
+                        <input type="number" id="amount" placeholder="金額を入力..." required min="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="category">CATEGORY</label>
+                        <select id="category" required>
+                            <option value="" disabled selected>選択してください...</option>
+                            <option value="食費">🥩 食費</option>
+                            <option value="日用品">🧼 日用品</option>
+                            <option value="ゲーム・趣味">🎮 ゲーム・趣味</option>
+                            <option value="交際費">🤝 交際費</option>
+                            <option value="その他">📦 その他</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">DATE</label>
+                        <input type="date" id="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="memo">MEMO</label>
+                        <input type="text" id="memo" placeholder="（例：モンストのガチャ、おやつ など）">
+                    </div>
+                    <button type="submit" id="submit-btn" class="cyber-btn">ADD TRANSACTION</button>
+                </form>
+            </section>
+        </div>
+
+        <!-- 📋 2. ログ画面 -->
+        <div id="log-screen" class="app-screen">
+            <section class="history-section">
+                <h2>HISTORY LOG</h2>
+                <div id="history-list" class="history-list">
+                    <p id="empty-message" class="empty-message">履歴はありません</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- 💰 3. 給与画面 -->
+        <div id="salary-screen" class="app-screen">
+            <section>
+                <h2>SALARY MANAGEMENT</h2>
+                <p class="empty-message">給与管理機能（開発中...）</p>
+            </section>
+        </div>
+
+        <!-- 🎲 4. ガチャ画面 -->
+        <div id="gacha-screen" class="app-screen">
+            <section>
+                <h2>CYBER GACHA</h2>
+                <p class="empty-message">お楽しみガチャコーナー（開発中...）</p>
+            </section>
+        </div>
+
+        <!-- ⚙️ 5. 設定画面 -->
+        <div id="settings-screen" class="app-screen">
+            <section>
+                <h2>THEME CONFIG</h2>
+                <p class="empty-message">ここでデザインの着せ替えができるようになります！</p>
+            </section>
+        </div>
+
+    </div>
+
+    <!-- 📱 画面最下部に固定される5つのサイバーメニューバー（シャープアイコン完全版） -->
+    <nav class="bottom-nav">
+        <button class="nav-item active" data-target="home-screen">
+            <span class="nav-icon">⌂</span>
+            <span class="nav-text">HOME</span>
+        </button>
+        <button class="nav-item" data-target="log-screen">
+            <span class="nav-icon">▤</span>
+            <span class="nav-text">LOG</span>
+        </button>
+        <button class="nav-item" data-target="salary-screen">
+            <span class="nav-icon">¥</span>
+            <span class="nav-text">SALARY</span>
+        </button>
+        <button class="nav-item" data-target="gacha-screen">
+            <span class="nav-icon">⬡</span>
+            <span class="nav-text">GACHA</span>
+        </button>
+        <button class="nav-item" data-target="settings-screen">
+            <span class="nav-icon">⛭</span>
+            <span class="nav-text">SETUP</span>
+        </button>
+    </nav>
+
+    <!-- 🧠 動きをつけるJavaScriptファイルの読み込み -->
+    <script src="./js/script.js"></script>
+</body>
+</html>
