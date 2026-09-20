@@ -2,7 +2,6 @@
    💥 1. グローバル設定 ＆ 着せ替え用カラー変数
    ======================================================= */
 :root {
-    /* 💡 初期設定（CYBER MODE）のカラーパレット */
     --bg-main: #121214;
     --bg-card: #1a1a1e;
     --bg-input: #0d0d0f;
@@ -15,7 +14,7 @@
 }
 
 * {
-    box-sizing: border-box !important; /* 💡 カレンダーも含め全てのサイズ計算を強制統一 */
+    box-sizing: border-box !important; 
     margin: 0;
     padding: 0;
 }
@@ -27,31 +26,18 @@ body {
     padding: 20px 10px 90px 10px; 
     display: flex;
     justify-content: center;
-    
-    /* 💡 これを追加！大画面（PCやiPad）のときに、アプリを上下の真ん中に配置して綺麗に見せます */
-    align-items: center; 
-    
     min-height: 100vh;
     color-scheme: dark; 
     transition: background-color 0.3s, color 0.3s;
 }
 
-
-/* アプリ全体を囲むコンテナ（スマホ幅に最適化しつつPCやiPadでも見やすく） */
 .app-container {
     width: 100%;
     max-width: 480px;
     display: flex;
     flex-direction: column;
     gap: 24px;
-    
-    /* 💡 ここを新しく追加！大画面で見たときに、家計簿アプリが浮き上がるような高級感を演出します */
-    background-color: var(--bg-card); /* コンテナ自体にカードの背景色をつける */
-    padding: 20px;                   /* 外側に綺麗な余白を作る */
-    border-radius: 12px;             /* 角を少し丸くする */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* 周りに立体的な影をつける */
 }
-
 
 /* =======================================================
    🚀 2. ヘッダーデザイン（サイバーウォレット）
@@ -132,15 +118,14 @@ section h2 {
     letter-spacing: 1px;
 }
 
-/* フォームの入力欄（カレンダーサイズ問題もここで完全統一して強制修正） */
 input[type="number"],
 input[type="text"],
 input[type="date"],
 select {
-    width: 100% !important;        /* 💡 横幅を親要素に100%強制で合わせる */
+    width: 100% !important;        
     max-width: 100% !important;
-    height: 46px !important;       /* 💡 高さを46pxに完全固定（巨大化を阻止） */
-    padding: 12px !important;      /* 💡 内側の余白も完全に均等化 */
+    height: 46px !important;       
+    padding: 12px !important;      
     background-color: var(--bg-input);
     border: 1px solid #3f3f46;
     border-radius: 4px;
@@ -148,13 +133,10 @@ select {
     font-size: 15px;
     outline: none;
     transition: all 0.2s ease;
-    
-    /* 🔥 ブラウザが勝手につけるカレンダーや入力欄の初期デザインを完全にリセット */
-    -webkit-appearance: none;      /* iPhone/Safari用のリセット */
-    appearance: none;              /* Android/Chrome用のリセット */
+    -webkit-appearance: none;      
+    appearance: none;              
 }
 
-/* 💡 カレンダーの文字の高さと位置を均等にする設定 */
 input[type="date"] {
     display: inline-flex;
     align-items: center;
@@ -276,7 +258,7 @@ select:focus {
 
 .theme-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* 2列の綺麗なボタン配置にする */
+    grid-template-columns: 1fr 1fr; 
     gap: 14px;
 }
 
@@ -295,7 +277,6 @@ select:focus {
     transition: all 0.2s ease;
 }
 
-/* 各着せ替えボタンの個性的な色設定 */
 .theme-cyber { background-color: #0d0d0f; border-color: #00f5ff; }
 .theme-cafe { background-color: #2b2622; border-color: #c7a17a; }
 .theme-pop { background-color: #381e29; border-color: #ff6b8b; }
@@ -357,7 +338,7 @@ select:focus {
 }
 
 /* =======================================================
-   📺 8. 表示制御 ＆ アニメーション（修復完了版）
+   📺 8. 表示制御 ＆ アニメーション
    ======================================================= */
 .app-screen {
     display: none;
@@ -373,7 +354,9 @@ select:focus {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* 🌈 ヘッダーのRGB枠線を動かすアニメーション（復活！） */
+/* =======================================================
+   🌈 9. ヘッダーのRGB枠線を動かすアニメーション
+   ======================================================= */
 @keyframes rgb-border-move {
   0% { border-image-source: linear-gradient(45deg, #ff0000, #ff7700, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000); }
   25% { border-image-source: linear-gradient(135deg, #ff00ff, #ff0000, #ff7700, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff); }
@@ -383,20 +366,22 @@ select:focus {
 }
 
 /* =======================================================
-   📱 9. 【最下部に配置】スマホ・タブレット向けの上書き設定（iPad対応版）
+   📱 10. 【完全独立】スマホ・タブレット向けの上書き設定
    ======================================================= */
 @media (max-width: 768px) {
-  
-  /* 💡 iPad以下の画面サイズのときは、横幅の480px制限を解除して画面いっぱいにフル表示 */
+  /* 💡 全てのカッコの入れ子から完全に独立させました！ */
   .app-container {
     max-width: 100% !important; 
-    border-radius: 0px;         
-    padding: 10px;              
+    border-radius: 0px !important;         
+    padding: 10px !important;              
   }
 
-  /* 💡 下部メニューバーもスマホ・タブレットの画面幅100%に広げる */
   .bottom-nav {
     max-width: 100% !important;
-    border-radius: 0px;
+    border-radius: 0px !important;
+  }
+  
+  body {
+    padding: 10px 10px 90px 10px !important;
   }
 }
