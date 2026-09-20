@@ -381,3 +381,27 @@ select:focus {
   75% { border-image-source: linear-gradient(315deg, #00ffff, #0000ff, #ff00ff, #ff0000, #ff7700, #ffff00, #00ff00, #00ffff); }
   100% { border-image-source: linear-gradient(405deg, #ff0000, #ff7700, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000); }
 }
+
+/* =======================================================
+   📱 2. 【最下部に配置】スマホ・タブレット向けの上書き設定
+   ======================================================= */
+@media (max-width: 768px) {
+  
+  /* 💡 ここを新しく追加！iPad以下の画面サイズ（横幅768px以下）のときは、
+        最大幅の制限を解除して画面いっぱいにフル表示させます */
+  .app-container {
+    max-width: 100% !important; /* 横幅の480px制限を完全に破壊する */
+    border-radius: 0px;         /* フル画面なので、外枠の角丸をまっすぐに直す */
+    padding: 10px;              /* 画面端に少しだけ隙間を作る */
+  }
+
+  .container {
+    flex-direction: column; 
+  }
+  
+  /* 1. ヘッダーをスマホの画面幅にピッタリ合わせる */
+  header {
+    width: 100%;
+    /* 〜以下はそのままノータッチでOKです！〜 */
+  }
+}
