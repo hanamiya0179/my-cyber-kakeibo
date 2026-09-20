@@ -2,7 +2,6 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-        <!-- 💡 修正後：画面の初期倍率を固定し、ユーザーによるピンチズーム拡大を100%完全に禁止するプロの魔法 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>CYBER KAKEIBO</title>
     <!-- 🎨 読み込むCSSファイル -->
@@ -22,7 +21,7 @@
             </div>
         </header>
 
-        <!-- ＝★＝★＝ 5つの画面の定義 ＝★＝★＝ -->
+        <!-- ＝★＝★＝ 5つの画面的定義 ＝★＝★＝ -->
 
         <!-- 🏠 1. ホーム画面 -->
         <div id="home-screen" class="app-screen active">
@@ -57,28 +56,33 @@
             </section>
         </div>
 
-        <!-- 📋 2. ログ画面 -->
+        <!-- 📋 2. ログ画面（★ここを月別切り替えにアップデート！） -->
         <div id="log-screen" class="app-screen">
             <section class="history-section">
                 <h2>HISTORY LOG</h2>
+                
+                <!-- 💡 【新設】表示する月を選択するサイバーセレクトボックス -->
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label for="month-filter">SELECT MONTH (表示する月を選択)</label>
+                    <select id="month-filter">
+                        <!-- JavaScriptで今月や過去の月を自動的にここに並べます -->
+                    </select>
+                </div>
+
                 <div id="history-list" class="history-list">
                     <p id="empty-message" class="empty-message">履歴はありません</p>
                 </div>
             </section>
         </div>
 
-        <!-- 💰 3. 給与画面（★ここをアップデート！） -->
+        <!-- 💰 3. 給与画面 -->
         <div id="salary-screen" class="app-screen">
             <section class="salary-section">
                 <h2>SALARY MANAGEMENT</h2>
-                
-                <!-- 💡 今月の残金（手取り - 支出）を表示するサイバーパネル -->
                 <div class="balance-box">
                     <span class="total-label">REMAINING BUDGET (残金)</span>
                     <div class="balance-amount">¥ <span id="balance-price">0</span></div>
                 </div>
-
-                <!-- 手取り金額の設定フォーム -->
                 <form id="salary-form">
                     <div class="form-group" style="margin-top: 20px;">
                         <label for="salary-amount">MONTHLY INCOME (毎月の手取り金額)</label>
