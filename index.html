@@ -21,7 +21,7 @@
             </div>
         </header>
 
-        <!-- ＝★＝★＝ 5つの画面的定義 ＝★＝★＝ -->
+        <!-- ＝★＝★＝ 5つの画面の定義 ＝★＝★＝ -->
 
         <!-- 🏠 1. ホーム画面 -->
         <div id="home-screen" class="app-screen active">
@@ -32,6 +32,7 @@
                         <label for="amount">AMOUNT (円)</label>
                         <input type="number" id="amount" placeholder="金額を入力..." required min="1">
                     </div>
+                    
                     <div class="form-group">
                         <label for="category">CATEGORY</label>
                         <select id="category" required>
@@ -45,6 +46,7 @@
                             <option value="その他">その他</option>
                         </select>
                     </div>
+
                     <div class="form-group">
                         <label for="date">DATE</label>
                         <input type="date" id="date" class="cyber-date-picker" required>
@@ -58,19 +60,15 @@
             </section>
         </div>
 
-        <!-- 📋 2. ログ画面（★ここを月別切り替えにアップデート！） -->
+        <!-- 📋 2. ログ画面 -->
         <div id="log-screen" class="app-screen">
             <section class="history-section">
                 <h2>HISTORY LOG</h2>
-                
-                <!-- 💡 【新設】表示する月を選択するサイバーセレクトボックス -->
                 <div class="form-group" style="margin-bottom: 20px;">
                     <label for="month-filter">SELECT MONTH (表示する月を選択)</label>
                     <select id="month-filter">
-                        <!-- JavaScriptで今月や過去の月を自動的にここに並べます -->
                     </select>
                 </div>
-
                 <div id="history-list" class="history-list">
                     <p id="empty-message" class="empty-message">履歴はありません</p>
                 </div>
@@ -97,19 +95,29 @@
 
         <!-- 🎲 4. ガチャ画面 -->
         <div id="gacha-screen" class="app-screen">
-            <section>
+            <section class="gacha-section">
                 <h2>CYBER GACHA</h2>
-                <p class="empty-message">お楽しみガチャコーナー（開発中...）</p>
+                <div class="gacha-tab-container">
+                    <button class="gacha-tab-btn active" data-gacha="fortune">占い</button>
+                    <button class="gacha-tab-btn" data-gacha="luxury">プチ贅沢</button>
+                </div>
+
+                <div class="total-box" style="margin-bottom: 30px; text-align: center; min-height: 100px; display: flex; justify-content: center; align-items: center;">
+                    <div id="gacha-result" style="font-size: 18px; font-weight: bold; color: var(--text-main);">
+                        今日の運勢を占おう！ボタンを押してね！
+                    </div>
+                </div>
+                <button id="gacha-btn">シングルガチャ</button>
             </section>
         </div>
 
-        <!-- ⚙️ 5. 設定画面 -->
+        <!-- ⚙️ 5. 設定画面（★シフト制・1日ずつ選べる休日選択へアップデート！） -->
         <div id="settings-screen" class="app-screen">
             <section class="theme-section">
                 <h2>THEME CONFIG</h2>
                 <p class="theme-intro">お好みのシステムスキンを選択してください</p>
                 
-                <div class="theme-grid">
+                <div class="theme-grid" style="margin-bottom: 30px;">
                     <button class="theme-btn theme-cyber" data-theme="cyber">
                         <span class="theme-icon">👾</span> CYBER
                     </button>
@@ -123,6 +131,34 @@
                         <span class="theme-icon">🏢</span> LIGHT
                     </button>
                 </div>
+
+                <!-- 💡 【新設計】シフト制対応：2つの休日を完全にバラバラに設定できるドロップダウン -->
+                <h2>HOLIDAY SETTING</h2>
+                <p class="theme-intro">プチ贅沢ガチャを解放する休日を2日選んでください</p>
+                <div class="form-group">
+                    <label>1日目の休日</label>
+                    <select id="holiday-select-1">
+                        <option value="6">土曜日</option>
+                        <option value="0">日曜日</option>
+                        <option value="1">月曜日</option>
+                        <option value="2">火曜日</option>
+                        <option value="3">水曜日</option>
+                        <option value="4">木曜日</option>
+                        <option value="5">金曜日</option>
+                    </select>
+                </div>
+                <div class="form-group" style="margin-top: 10px;">
+                    <label>2日目の休日</label>
+                    <select id="holiday-select-2">
+                        <option value="0">日曜日</option>
+                        <option value="6">土曜日</option>
+                        <option value="1">月曜日</option>
+                        <option value="2">火曜日</option>
+                        <option value="3">水曜日</option>
+                        <option value="4">木曜日</option>
+                        <option value="5">金曜日</option>
+                    </select>
+                </div>
             </section>
         </div>
 
@@ -132,23 +168,23 @@
     <nav class="bottom-nav">
         <button class="nav-item active" data-target="home-screen">
             <span class="nav-icon">⌂</span>
-            <span class="nav-text">HOME</span>
+            <span class="nav-text">ホーム</span>
         </button>
         <button class="nav-item" data-target="log-screen">
             <span class="nav-icon">▤</span>
-            <span class="nav-text">LOG</span>
+            <span class="nav-text">ログ</span>
         </button>
         <button class="nav-item" data-target="salary-screen">
             <span class="nav-icon">¥</span>
-            <span class="nav-text">SALARY</span>
+            <span class="nav-text">給与</span>
         </button>
         <button class="nav-item" data-target="gacha-screen">
             <span class="nav-icon">⬡</span>
-            <span class="nav-text">GACHA</span>
+            <span class="nav-text">ガチャ</span>
         </button>
         <button class="nav-item" data-target="settings-screen">
             <span class="nav-icon">⛭</span>
-            <span class="nav-text">SETUP</span>
+            <span class="nav-text">オプション</span>
         </button>
     </nav>
 

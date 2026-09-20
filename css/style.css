@@ -7,35 +7,32 @@
     --bg-input: #0d0d0f;
     --text-main: #e2e8f0;
     --text-muted: #64748b;
-    --accent-シアン: #00f5ff;
-    --accent-グリーン: #39ff14;
+    --accent-cyan: #00f5ff;
+    --accent-green: #39ff14;
     --btn-gradient: linear-gradient(135deg, #00f5ff 0%, #0055ff 100%);
     --border-color: #2d2d34;
+    --header-border: transparent;
 }
 
 * {
-    box-sizing: border-box !important; 
+    box-sizing: border-box !important;
     margin: 0;
     padding: 0;
 }
 
 body {
-    background-color: var(--bg-main); 
+    background-color: var(--bg-main);
     color: var(--text-main);
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    padding: 20px 10px 90px 10px; 
+    padding: 20px 10px 90px 10px;
     display: flex;
     justify-content: center;
-    align-items: center; 
     min-height: 100vh;
-    color-scheme: dark; 
+    color-scheme: dark;
     transition: background-color 0.3s, color 0.3s;
-
-    /* 🔥 ここを新しく追加！画面全体の「余計な縦揺れ・ゴムのようなバウンス」を完全に禁止します */
-    overscroll-behavior: none; 
-    overflow-x: hidden; /* 横スクロールの完全防止 */
+    overscroll-behavior: none;
+    overflow-x: hidden;
 }
-
 
 .app-container {
     width: 100%;
@@ -53,16 +50,22 @@ body {
     padding: 20px;
     text-align: center;
     border-radius: 8px;
+    border: 3px solid var(--header-border);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    transition: border 0.3s ease;
+}
+
+/* 💡 サイバーの時だけ七色アニメーションを爆発させるトリガー */
+body.theme-cyber .cyber-header {
     border: 3px solid transparent;
     border-image: linear-gradient(45deg, #ff0000, #ff7700, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000) 1;
     animation: rgb-border-move 4s linear infinite;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
 }
 
 .cyber-header h1 {
     font-size: 20px;
     font-weight: 900;
-    color: var(--accent-シアン);
+    color: var(--accent-cyan);
     letter-spacing: 3px;
     margin-bottom: 15px;
     text-shadow: 0 0 8px rgba(0, 245, 255, 0.6);
@@ -86,7 +89,7 @@ body {
 .total-amount {
     font-size: 32px;
     font-weight: 900;
-    color: var(--accent-グリーン); 
+    color: var(--accent-green);
     text-shadow: 0 0 10px rgba(57, 255, 20, 0.6);
     font-family: monospace;
 }
@@ -100,14 +103,15 @@ section {
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    margin-bottom: 15px;
 }
 
 section h2 {
     font-size: 14px;
-    color: var(--accent-シアン);
+    color: var(--accent-cyan);
     letter-spacing: 2px;
     margin-bottom: 20px;
-    border-left: 3px solid var(--accent-シアン);
+    border-left: 3px solid var(--accent-cyan);
     padding-left: 8px;
     text-shadow: 0 0 5px rgba(0, 245, 255, 0.4);
 }
@@ -128,10 +132,10 @@ input[type="number"],
 input[type="text"],
 input[type="date"],
 select {
-    width: 100% !important;        
+    width: 100% !important;
     max-width: 100% !important;
-    height: 46px !important;       
-    padding: 12px !important;      
+    height: 46px !important;
+    padding: 12px !important;
     background-color: var(--bg-input);
     border: 1px solid #3f3f46;
     border-radius: 4px;
@@ -139,8 +143,8 @@ select {
     font-size: 15px;
     outline: none;
     transition: all 0.2s ease;
-    -webkit-appearance: none;      
-    appearance: none;              
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 input[type="date"] {
@@ -150,7 +154,7 @@ input[type="date"] {
 
 input:focus,
 select:focus {
-    border-color: var(--accent-シアン);
+    border-color: var(--accent-cyan);
     box-shadow: 0 0 8px rgba(0, 245, 255, 0.3);
 }
 
@@ -204,7 +208,7 @@ select:focus {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-left: 4px solid var(--accent-シアン);
+    border-left: 4px solid var(--accent-cyan);
     animation: fadeIn 0.3s ease-out;
 }
 
@@ -239,7 +243,7 @@ select:focus {
 .card-amount {
     font-size: 18px;
     font-weight: 700;
-    color: var(--accent-グリーン); 
+    color: var(--accent-green);
     font-family: monospace;
 }
 
@@ -264,7 +268,7 @@ select:focus {
 
 .theme-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; 
+    grid-template-columns: 1fr 1fr;
     gap: 14px;
 }
 
@@ -283,14 +287,30 @@ select:focus {
     transition: all 0.2s ease;
 }
 
-.theme-cyber { background-color: #0d0d0f; border-color: #00f5ff; }
-.theme-cafe { background-color: #2b2622; border-color: #c7a17a; }
-.theme-pop { background-color: #381e29; border-color: #ff6b8b; }
-.theme-light { background-color: #f8fafc; border-color: #0f172a; color: #0f172a; }
+.theme-cyber {
+    background-color: #0d0d0f;
+    border-color: #00f5ff;
+}
+
+.theme-cafe {
+    background-color: #2b2622;
+    border-color: #c7a17a;
+}
+
+.theme-pop {
+    background-color: #381e29;
+    border-color: #ff6b8b;
+}
+
+.theme-light {
+    background-color: #f8fafc;
+    border-color: #0f172a;
+    color: #0f172a;
+}
 
 .theme-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 /* =======================================================
@@ -298,30 +318,27 @@ select:focus {
    ======================================================= */
 .bottom-nav {
     position: fixed;
-    bottom: 0 !important;        /* 💡 強制的に画面の最下部に密着させる */
+    bottom: 0 !important;
     left: 50%;
-    transform: translateX(-50%); 
+    transform: translateX(-50%);
     width: 100%;
-    max-width: 480px;            
+    max-width: 480px;
     height: 70px;
-    background-color: var(--bg-card);    
+    background-color: var(--bg-card);
     border-top: 2px solid var(--border-color);
     display: flex;
     justify-content: space-around;
     align-items: center;
-    z-index: 10000 !important;   /* 💡 どんな要素よりも絶対手前に表示 */
+    z-index: 10000 !important;
     box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.7);
-    padding-bottom: env(safe-area-inset-bottom); 
-
-    /* 🔥 ここを追加！メニューバー自体を指で引っ張って動かせてしまうのを禁止する */
-    touch-action: none; 
+    padding-bottom: env(safe-area-inset-bottom);
+    touch-action: none;
 }
-
 
 .nav-item {
     background: none;
     border: none;
-    color: var(--text-muted);              
+    color: var(--text-muted);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -343,61 +360,12 @@ select:focus {
 }
 
 .nav-item.active {
-    color: var(--accent-シアン);              
+    color: var(--accent-cyan);
     text-shadow: 0 0 8px rgba(0, 245, 255, 0.6);
 }
 
 /* =======================================================
-   📺 8. 表示制御 ＆ アニメーション
-   ======================================================= */
-.app-screen {
-    display: none;
-    animation: fadeIn 0.3s ease-out; 
-}
-
-.app-screen.active {
-    display: block;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* =======================================================
-   🌈 9. ヘッダーのRGB枠線を動かすアニメーション
-   ======================================================= */
-@keyframes rgb-border-move {
-  0% { border-image-source: linear-gradient(45deg, #ff0000, #ff7700, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000); }
-  25% { border-image-source: linear-gradient(135deg, #ff00ff, #ff0000, #ff7700, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff); }
-  50% { border-image-source: linear-gradient(225deg, #0000ff, #ff00ff, #ff0000, #ff7700, #ffff00, #00ff00, #00ffff, #0000ff); }
-  75% { border-image-source: linear-gradient(315deg, #00ffff, #0000ff, #ff00ff, #ff0000, #ff7700, #ffff00, #00ff00, #00ffff); }
-  100% { border-image-source: linear-gradient(405deg, #ff0000, #ff7700, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000); }
-}
-
-/* =======================================================
-   📱 10. 【完全独立】スマホ・タブレット向けの上書き設定
-   ======================================================= */
-@media (max-width: 1024px) {
-  /* 💡 全てのカッコの入れ子から完全に独立させました！ */
-  .app-container {
-    max-width: 100% !important; 
-    border-radius: 0px !important;         
-    padding: 10px !important;              
-  }
-
-  .bottom-nav {
-    max-width: 100% !important;
-    border-radius: 0px !important;
-  }
-  
-  body {
-    padding: 10px 10px 90px 10px !important;
-  }
-}
-
-/* =======================================================
-   💰 【新規追加】給与画面（残金ボックス）専用のデザイン
+   💰 8. 給与画面専用のデザイン
    ======================================================= */
 .balance-box {
     background-color: var(--bg-input);
@@ -411,9 +379,208 @@ select:focus {
 .balance-amount {
     font-size: 32px;
     font-weight: 900;
-    /* 💡 残金はアクセントカラー（シアン等）で綺麗に発光させる */
-    color: var(--accent-シアン); 
+    color: var(--accent-cyan);
     text-shadow: 0 0 10px rgba(0, 245, 255, 0.4);
     font-family: monospace;
     margin-top: 5px;
+}
+
+/* =======================================================
+   🎰 9. モンスト風ガチャボタン ＆ アニメーション
+   ======================================================= */
+#gacha-btn {
+    display: block;
+    width: 90%;
+    max-width: 340px;
+    margin: 20px auto;
+    padding: 15px 40px;
+    font-size: 22px;
+    font-weight: 900;
+    color: #ffffff;
+    background: linear-gradient(to bottom, #ffea00 0%, #ff6d00 40%, #e65100 100%) !important;
+    border: 4px solid #ffb300 !important;
+    border-radius: 6px;
+    box-shadow: 0 6px 0 #bf360c, 0 8px 15px rgba(0, 0, 0, 0.5) !important;
+    cursor: pointer;
+    position: relative;
+    top: 0;
+    transition: all 0.05s ease;
+}
+
+#gacha-btn:hover {
+    filter: brightness(1.1) drop-shadow(0 0 8px rgba(255, 234, 0, 0.6));
+}
+
+#gacha-btn:active {
+    top: 4px;
+    box-shadow: 0 2px 0 #bf360c, 0 2px 5px rgba(0, 0, 0, 0.5) !important;
+}
+
+@keyframes gacha-shake {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    20% {
+        transform: translate(-3px, 2px) rotate(-1deg);
+    }
+
+    40% {
+        transform: translate(3px, -1px) rotate(1deg);
+    }
+
+    60% {
+        transform: translate(-2px, -2px) rotate(0deg);
+    }
+
+    80% {
+        transform: translate(2px, 1px) rotate(1deg);
+    }
+
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+.btn-shake {
+    animation: gacha-shake 0.1s linear infinite !important;
+    filter: brightness(1.2);
+}
+
+@keyframes screen-flash-anim {
+    0% {
+        background-color: #ffffff;
+    }
+
+    100% {
+        background-color: var(--bg-main);
+    }
+}
+
+.screen-flash {
+    animation: screen-flash-anim 0.4s ease-out !important;
+}
+
+@keyframes rare-flash {
+    0% {
+        transform: scale(1);
+        color: #ff007f;
+        text-shadow: 0 0 10px #ff007f;
+    }
+
+    50% {
+        transform: scale(1.05);
+        color: #ffff00;
+        text-shadow: 0 0 20px #ffff00;
+    }
+
+    100% {
+        transform: scale(1);
+        color: #ff007f;
+        text-shadow: 0 0 10px #ff007f;
+    }
+}
+
+.rare-effect {
+    animation: rare-flash 0.3s linear infinite;
+    font-weight: bold;
+    font-size: 20px;
+    display: inline-block;
+}
+
+/* =======================================================
+   📺 10. 表示制御 ＆ アニメーション
+   ======================================================= */
+.app-screen {
+    display: none;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.app-screen.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes rgb-border-move {
+    0% {
+        border-image-source: linear-gradient(45deg, #ff0000, #ff7700, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000);
+    }
+
+    25% {
+        border-image-source: linear-gradient(135deg, #ff00ff, #ff0000, #ff7700, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff);
+    }
+
+    50% {
+        border-image-source: linear-gradient(225deg, #0000ff, #ff00ff, #ff0000, #ff7700, #ffff00, #00ff00, #00ffff, #0000ff);
+    }
+
+    75% {
+        border-image-source: linear-gradient(315deg, #00ffff, #0000ff, #ff00ff, #ff0000, #ff7700, #ffff00, #00ff00, #00ffff);
+    }
+
+    100% {
+        border-image-source: linear-gradient(405deg, #ff0000, #ff7700, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000);
+    }
+}
+
+/* =======================================================
+   📱 11. 【iPad対応】スマホ・タブレット向け上書き設定
+   ======================================================= */
+@media (max-width: 1024px) {
+    .app-container {
+        max-width: 100% !important;
+        border-radius: 0px !important;
+        padding: 10px !important;
+    }
+
+    .bottom-nav {
+        max-width: 100% !important;
+        border-radius: 0px !important;
+    }
+
+    body {
+        padding: 10px 10px 90px 10px !important;
+    }
+}
+
+/* =======================================================
+   🔮 12. ガチャ用ミニタブスイッチのデザイン
+   ======================================================= */
+.gacha-tab-container {
+    display: flex;
+    background-color: var(--bg-input);
+    border-radius: 6px;
+    padding: 4px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-color);
+}
+
+.gacha-tab-btn {
+    width: 50%;
+    padding: 10px;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.gacha-tab-btn.active {
+    background-color: var(--bg-card);
+    color: var(--accent-cyan);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
