@@ -119,14 +119,15 @@ section h2 {
     letter-spacing: 1px;
 }
 
-/* フォームの入力欄（カレンダーサイズ問題もここで完全統一して修正） */
+/* フォームの入力欄（カレンダーサイズ問題もここで完全統一して強制修正） */
 input[type="number"],
 input[type="text"],
 input[type="date"],
 select {
-    width: 100% !important;        /* 💡 強制的に横幅を100%に揃える */
-    max-width: 100%;
-    padding: 12px !important;      /* 💡 カレンダーのパディングのズレを強制固定 */
+    width: 100% !important;        /* 💡 横幅を親要素に100%強制で合わせる */
+    max-width: 100% !important;
+    height: 46px !important;       /* 💡 高さを46pxに完全固定（巨大化を阻止） */
+    padding: 12px !important;      /* 💡 内側の余白も完全に均等化 */
     background-color: var(--bg-input);
     border: 1px solid #3f3f46;
     border-radius: 4px;
@@ -134,7 +135,16 @@ select {
     font-size: 15px;
     outline: none;
     transition: all 0.2s ease;
-    height: 46px;                  /* 💡 高さをきっちり固定してカレンダーだけ巨大化するのを防ぐ */
+    
+    /* 🔥 ブラウザが勝手につけるカレンダーや入力欄の初期デザインを完全にリセット */
+    -webkit-appearance: none;      /* iPhone/Safari用のリセット */
+    appearance: none;              /* Android/Chrome用のリセット */
+}
+
+/* 💡 カレンダーの文字の高さと位置を均等にする設定 */
+input[type="date"] {
+    display: inline-flex;
+    align-items: center;
 }
 
 input:focus,
@@ -242,7 +252,7 @@ select:focus {
 }
 
 /* =======================================================
-   ⚙️ 6. 【新規追加】着せ替え画面専用のデザイン
+   ⚙️ 6. 着せ替え画面専用のデザイン
    ======================================================= */
 .theme-intro {
     font-size: 13px;
@@ -334,7 +344,7 @@ select:focus {
 }
 
 /* =======================================================
-   📺 8. 表示制御 ＆ アニメーション
+   📺 8. 表示制御 ＆ アニメーション（修復完了版）
    ======================================================= */
 .app-screen {
     display: none;
@@ -350,6 +360,7 @@ select:focus {
     to { opacity: 1; transform: translateY(0); }
 }
 
+/* 🌈 ヘッダーのRGB枠線を動かすアニメーション（復活！） */
 @keyframes rgb-border-move {
   0% { border-image-source: linear-gradient(45deg, #ff0000, #ff7700, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000); }
   25% { border-image-source: linear-gradient(135deg, #ff00ff, #ff0000, #ff7700, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff); }
