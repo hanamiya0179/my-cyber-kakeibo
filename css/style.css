@@ -26,10 +26,16 @@ body {
     padding: 20px 10px 90px 10px; 
     display: flex;
     justify-content: center;
+    align-items: center; 
     min-height: 100vh;
     color-scheme: dark; 
     transition: background-color 0.3s, color 0.3s;
+
+    /* 🔥 ここを新しく追加！画面全体の「余計な縦揺れ・ゴムのようなバウンス」を完全に禁止します */
+    overscroll-behavior: none; 
+    overflow-x: hidden; /* 横スクロールの完全防止 */
 }
+
 
 .app-container {
     width: 100%;
@@ -292,7 +298,7 @@ select:focus {
    ======================================================= */
 .bottom-nav {
     position: fixed;
-    bottom: 0;
+    bottom: 0 !important;        /* 💡 強制的に画面の最下部に密着させる */
     left: 50%;
     transform: translateX(-50%); 
     width: 100%;
@@ -303,10 +309,14 @@ select:focus {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    z-index: 1000;               
+    z-index: 10000 !important;   /* 💡 どんな要素よりも絶対手前に表示 */
     box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.7);
     padding-bottom: env(safe-area-inset-bottom); 
+
+    /* 🔥 ここを追加！メニューバー自体を指で引っ張って動かせてしまうのを禁止する */
+    touch-action: none; 
 }
+
 
 .nav-item {
     background: none;
