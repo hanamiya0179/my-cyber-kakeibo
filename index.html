@@ -45,7 +45,7 @@
                     </div>
                     <div class="form-group">
                         <label for="date">DATE</label>
-                        <input type="date" id="date" required>
+                        <input type="date" id="date" class="cyber-date-picker" required>
                     </div>
                     <div class="form-group">
                         <label for="memo">MEMO</label>
@@ -82,17 +82,32 @@
             </section>
         </div>
 
-        <!-- ⚙️ 5. 設定画面 -->
+        <!-- ⚙️ 5. 設定画面（★ここにテーマ着せ替えボタンを設置！） -->
         <div id="settings-screen" class="app-screen">
-            <section>
+            <section class="theme-section">
                 <h2>THEME CONFIG</h2>
-                <p class="empty-message">ここでデザインの着せ替えができるようになります！</p>
+                <p class="theme-intro">お好みのシステムスキンを選択してください</p>
+                
+                <div class="theme-grid">
+                    <button class="theme-btn theme-cyber" data-theme="cyber">
+                        <span class="theme-icon">👾</span> CYBER
+                    </button>
+                    <button class="theme-btn theme-cafe" data-theme="cafe">
+                        <span class="theme-icon">☕</span> CAFE
+                    </button>
+                    <button class="theme-btn theme-pop" data-theme="pop">
+                        <span class="theme-icon">🍓</span> POP
+                    </button>
+                    <button class="theme-btn theme-light" data-theme="light">
+                        <span class="theme-icon">🏢</span> LIGHT
+                    </button>
+                </div>
             </section>
         </div>
 
     </div>
 
-    <!-- 📱 画面最下部に固定される5つのサイバーメニューバー（シャープアイコン完全版） -->
+    <!-- 📱 画面最下部に固定される5つのサイバーメニューバー -->
     <nav class="bottom-nav">
         <button class="nav-item active" data-target="home-screen">
             <span class="nav-icon">⌂</span>
@@ -116,7 +131,7 @@
         </button>
     </nav>
 
-    <!-- 🧠 動きをつけるJavaScriptファイルの読み込み -->
+    <!-- 🧠 JavaScriptファイルの読み込み -->
     <script src="./js/script.js"></script>
 </body>
 </html>
