@@ -35,7 +35,7 @@ window.addEventListener("DOMContentLoaded", function() {
         cyber: {
             "--bg-main": "#121214", "--bg-card": "#1a1a1e", "--bg-input": "#0d0d0f",
             "--text-main": "#e2e8f0", "--text-muted": "#64748b",
-            "--accent-シアン": #00f5ff, "--accent-グリーン": #39ff14,
+            "--accent-シアン":"#00f5ff", "--accent-グリーン": "#39ff14",
             "--btn-gradient": "linear-gradient(135deg, #00f5ff 0%, #0055ff 100%)", "--border-color": "#2d2d34"
         },
         cafe: {
