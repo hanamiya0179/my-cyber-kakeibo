@@ -26,16 +26,16 @@ window.addEventListener("DOMContentLoaded", function() {
     }
 
     // =======================================================
-    // ⚙️ 2. 【新規追加】スキン着せ替えシステム（セーブ機能付き）
+    // ⚙️ 2. スキン着せ替えシステム（セーブ機能付き）
     // =======================================================
     const themeButtons = document.querySelectorAll(".theme-btn");
     
-    // 🎨 各テーマの色データの箱（設計図）
+    // 🎨 各テーマの色データの箱（設計図 - ちょんちょんを綺麗に補完しました！）
     const themeStyles = {
         cyber: {
             "--bg-main": "#121214", "--bg-card": "#1a1a1e", "--bg-input": "#0d0d0f",
             "--text-main": "#e2e8f0", "--text-muted": "#64748b",
-            "--accent-シアン":"#00f5ff", "--accent-グリーン": "#39ff14",
+            "--accent-シアン": "#00f5ff", "--accent-グリーン": "#39ff14",
             "--btn-gradient": "linear-gradient(135deg, #00f5ff 0%, #0055ff 100%)", "--border-color": "#2d2d34"
         },
         cafe: {
@@ -79,8 +79,8 @@ window.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // 🔄 アプリ起動時に、前回セーブしたテーマがあれば自動で読み込む
-    const savedTheme = localStorage.setItem("saved-theme");
+    // 🔄 アプリ起動時に、前回セーブしたテーマがあれば自動で読み込む（getItemに修正！）
+    const savedTheme = localStorage.getItem("saved-theme");
     if (savedTheme) {
         applyTheme(savedTheme);
     }
