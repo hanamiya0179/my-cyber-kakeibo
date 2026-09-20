@@ -30,7 +30,6 @@ window.addEventListener("DOMContentLoaded", function() {
     // =======================================================
     const themeButtons = document.querySelectorAll(".theme-btn");
     
-    // 🎨 各テーマの色データの箱（設計図 - ちょんちょんを綺麗に補完しました！）
     const themeStyles = {
         cyber: {
             "--bg-main": "#121214", "--bg-card": "#1a1a1e", "--bg-input": "#0d0d0f",
@@ -58,44 +57,62 @@ window.addEventListener("DOMContentLoaded", function() {
         }
     };
 
-    // 👆 着せ替えボタンが押された時の処理
     themeButtons.forEach(function(btn) {
         btn.addEventListener("click", function() {
             const selectedTheme = btn.getAttribute("data-theme");
             applyTheme(selectedTheme);
-            // 💾 ローカルストレージに選んだテーマをセーブする
             localStorage.setItem("saved-theme", selectedTheme);
         });
     });
 
-    // 🌟 色を画面に適用する関数
     function applyTheme(themeName) {
         const colors = themeStyles[themeName];
         if (!colors) return;
-        
-        // CSSの変数の中身をすべて上書きして入れ替える
         for (const [key, value] of Object.entries(colors)) {
             document.documentElement.style.setProperty(key, value);
         }
     }
 
-    // 🔄 アプリ起動時に、前回セーブしたテーマがあれば自動で読み込む（getItemに修正！）
     const savedTheme = localStorage.getItem("saved-theme");
     if (savedTheme) {
         applyTheme(savedTheme);
     }
 
     // =======================================================
-    // 💸 3. 家計簿の計算 ＆ 履歴追加システム
+    // 💸 3. 家計簿の計算 ＆ 履歴 ＆ 給与引き算システム
     // =======================================================
     let transactions = [];
     let totalExpense = 0;
+    let monthlyIncome = 0; // 💡 手取り金額を保存しておく変数（初期値は0円）
 
+    // 🧱 画面の要素をすべて取得
     const kakeiboForm = document.getElementById("kakeibo-form");
+    const salaryForm = document.getElementById("salary-form"); // 給料フォーム
     const totalPriceSpan = document.getElementById("total-price");
+    const balancePriceSpan = document.getElementById("balance-price"); // 残金表示
     const historyList = document.getElementById("history-list");
     const emptyMessage = document.getElementById("empty-message");
 
+    // 💰 給料入力ボタン（SET INCOME）が押された時の処理
+    if (salaryForm) {
+        salaryForm.addEventListener("submit", function(e) {
+            e.preventDefault();
+            const salaryInput = document.getElementById("salary-amount");
+            if (!salaryInput) return;
+
+            // 入力された金額を数字に変換して保存
+            monthlyIncome = parseInt(salaryInput.value) || 0;
+
+            // 🔄 画面全体の計算をリフレッシュ（残金を再計算する）
+            updateApp();
+            
+            // 入力欄をすっきり空っぽにする
+            salaryForm.reset();
+            alert(`手取り金額を ¥${monthlyIncome.toLocaleString()} に設定しました！`);
+        });
+    }
+
+    // 📥 支出登録ボタン（ADD TRANSACTION）が押された時の処理
     if (kakeiboForm) {
         kakeiboForm.addEventListener("submit", function(e) {
             e.preventDefault(); 
@@ -126,12 +143,30 @@ window.addEventListener("DOMContentLoaded", function() {
         });
     }
 
+    // 🌟 画面の数値を再計算してリフレッシュする関数（まとめ役）
     function updateApp() {
         if (!totalPriceSpan || !historyList) return;
 
+        // ① 支出の合計を計算
         totalExpense = transactions.reduce((sum, t) => sum + t.amount, 0);
         totalPriceSpan.textContent = totalExpense.toLocaleString();
 
+        // 💡 ② 【新機能】残金の計算（手取り金額 － 支出の合計）
+        const remainingBalance = monthlyIncome - totalExpense;
+        if (balancePriceSpan) {
+            balancePriceSpan.textContent = remainingBalance.toLocaleString();
+            
+            // [プチ演出] もし残金がマイナス（赤字）になったら文字を赤く、黒字ならテーマ色にする
+            if (remainingBalance < 0) {
+                balancePriceSpan.style.color = "#ff4a4a";
+                balancePriceSpan.style.textShadow = "0 0 10px rgba(255, 74, 74, 0.6)";
+            } else {
+                balancePriceSpan.style.color = ""; // CSSの設定（テーマ色）に戻す
+                balancePriceSpan.style.textShadow = "";
+            }
+        }
+
+        // ③ 履歴カードの組み立て（以下は今までと同じ）
         historyList.innerHTML = "";
 
         if (transactions.length === 0) {

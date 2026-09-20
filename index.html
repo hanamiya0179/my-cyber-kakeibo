@@ -36,11 +36,11 @@
                         <label for="category">CATEGORY</label>
                         <select id="category" required>
                             <option value="" disabled selected>選択してください...</option>
-                            <option value="食費">食費</option>
-                            <option value="日用品">日用品</option>
-                            <option value="ゲーム・趣味">ゲーム・趣味</option>
-                            <option value="交際費">交際費</option>
-                            <option value="その他">その他</option>
+                            <option value="食費">🥩 食費</option>
+                            <option value="日用品">🧼 日用品</option>
+                            <option value="ゲーム・趣味">🎮 ゲーム・趣味</option>
+                            <option value="交際費">🤝 交際費</option>
+                            <option value="その他">📦 その他</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -66,11 +66,25 @@
             </section>
         </div>
 
-        <!-- 💰 3. 給与画面 -->
+        <!-- 💰 3. 給与画面（★ここをアップデート！） -->
         <div id="salary-screen" class="app-screen">
-            <section>
+            <section class="salary-section">
                 <h2>SALARY MANAGEMENT</h2>
-                <p class="empty-message">給与管理機能（開発中...）</p>
+                
+                <!-- 💡 今月の残金（手取り - 支出）を表示するサイバーパネル -->
+                <div class="balance-box">
+                    <span class="total-label">REMAINING BUDGET (残金)</span>
+                    <div class="balance-amount">¥ <span id="balance-price">0</span></div>
+                </div>
+
+                <!-- 手取り金額の設定フォーム -->
+                <form id="salary-form">
+                    <div class="form-group" style="margin-top: 20px;">
+                        <label for="salary-amount">MONTHLY INCOME (毎月の手取り金額)</label>
+                        <input type="number" id="salary-amount" placeholder="手取りの金額を入力..." required min="0">
+                    </div>
+                    <button type="submit" id="salary-submit-btn" class="cyber-btn">SET INCOME</button>
+                </form>
             </section>
         </div>
 
@@ -82,7 +96,7 @@
             </section>
         </div>
 
-        <!-- ⚙️ 5. 設定画面（★ここにテーマ着せ替えボタンを設置！） -->
+        <!-- ⚙️ 5. 設定画面 -->
         <div id="settings-screen" class="app-screen">
             <section class="theme-section">
                 <h2>THEME CONFIG</h2>
@@ -111,23 +125,23 @@
     <nav class="bottom-nav">
         <button class="nav-item active" data-target="home-screen">
             <span class="nav-icon">⌂</span>
-            <span class="nav-text">ホーム</span>
+            <span class="nav-text">HOME</span>
         </button>
         <button class="nav-item" data-target="log-screen">
             <span class="nav-icon">▤</span>
-            <span class="nav-text">ログ</span>
+            <span class="nav-text">LOG</span>
         </button>
         <button class="nav-item" data-target="salary-screen">
             <span class="nav-icon">¥</span>
-            <span class="nav-text">給与</span>
+            <span class="nav-text">SALARY</span>
         </button>
         <button class="nav-item" data-target="gacha-screen">
             <span class="nav-icon">⬡</span>
-            <span class="nav-text">ガチャ</span>
+            <span class="nav-text">GACHA</span>
         </button>
         <button class="nav-item" data-target="settings-screen">
             <span class="nav-icon">⛭</span>
-            <span class="nav-text">オプション</span>
+            <span class="nav-text">SETUP</span>
         </button>
     </nav>
 
