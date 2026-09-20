@@ -27,18 +27,31 @@ body {
     padding: 20px 10px 90px 10px; 
     display: flex;
     justify-content: center;
+    
+    /* 💡 これを追加！大画面（PCやiPad）のときに、アプリを上下の真ん中に配置して綺麗に見せます */
+    align-items: center; 
+    
     min-height: 100vh;
     color-scheme: dark; 
-    transition: background-color 0.3s, color 0.3s; /* 着せ替え時のアニメーションを滑らかに */
+    transition: background-color 0.3s, color 0.3s;
 }
 
+
+/* アプリ全体を囲むコンテナ（スマホ幅に最適化しつつPCやiPadでも見やすく） */
 .app-container {
     width: 100%;
     max-width: 480px;
     display: flex;
     flex-direction: column;
     gap: 24px;
+    
+    /* 💡 ここを新しく追加！大画面で見たときに、家計簿アプリが浮き上がるような高級感を演出します */
+    background-color: var(--bg-card); /* コンテナ自体にカードの背景色をつける */
+    padding: 20px;                   /* 外側に綺麗な余白を作る */
+    border-radius: 12px;             /* 角を少し丸くする */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* 周りに立体的な影をつける */
 }
+
 
 /* =======================================================
    🚀 2. ヘッダーデザイン（サイバーウォレット）
